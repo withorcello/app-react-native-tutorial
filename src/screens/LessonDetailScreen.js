@@ -1,11 +1,11 @@
 // src/screens/LessonDetailScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import Header from '../components/Header';
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../components/Button';
 import CodeBlock from '../components/CodeBlock';
 import { lessons } from '../data/lessons';
 import theme from '../styles/theme';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LessonDetailScreen = ({ route, navigation }) => {
   const { lessonId } = route.params;
@@ -151,11 +151,18 @@ const LessonDetailScreen = ({ route, navigation }) => {
   
   return (
     <View style={styles.container}>
-      <Header 
-        title={lesson.title}
-        leftIcon="arrow-back"
-        onLeftPress={() => navigation.goBack()}
-      />
+      <View style={styles.header}>
+        <View style={styles.headerTitleRow}>
+          <TouchableOpacity 
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
+          </TouchableOpacity>
+          <Text style={styles.title}>{lesson.title}</Text>
+          <View style={styles.spacer} />
+        </View>
+      </View>
       
       <View style={styles.tabsContainer}>
         <Button
@@ -207,6 +214,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.background.primary,
+  },
+  header: {
+    backgroundColor: theme.COLORS.background.primary,
+    paddingVertical: theme.SPACING.md,
+    paddingHorizontal: theme.SPACING.md,
+    borderBottomWidth: 1,
+    borderBottomColor: '#2D2D2D',
+  },
+  headerTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  backButton: {
+    padding: theme.SPACING.xs,
+  },
+  title: {
+    color: theme.COLORS.text.primary,
+    fontSize: theme.FONT.size.lg,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flex: 1,
+  },
+  spacer: {
+    width: 24, // Mesmo tamanho do ícone de voltar para equilibrar o layout
   },
   loadingContainer: {
     flex: 1,

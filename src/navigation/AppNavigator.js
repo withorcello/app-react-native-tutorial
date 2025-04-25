@@ -20,13 +20,7 @@ const LessonsStackNavigator = () => {
   return (
     <LessonsStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#1E1E1E',
-        },
-        headerTintColor: '#FFFFFF',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        headerShown: false,
         cardStyle: { backgroundColor: '#121212' }
       }}
     >
@@ -37,7 +31,7 @@ const LessonsStackNavigator = () => {
       <LessonsStack.Screen 
         name="LessonDetail" 
         component={LessonDetailScreen}
-        options={({ route }) => ({ title: route.params.title })}
+        options={{ headerShown: false }}
       />
     </LessonsStack.Navigator>
   );

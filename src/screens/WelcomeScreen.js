@@ -2,16 +2,15 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import Button from '../components/Button';
-import Header from '../components/Header';
 import theme from '../styles/theme';
 
 const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header 
-        title="AprendeReact Native" 
-        subtitle="Desenvolvimento Sustentável Digital"
-      />
+      <View style={styles.header}>
+        <Text style={styles.title}>AprendeReact Native</Text>
+        <Text style={styles.subtitle}>Desenvolvimento Sustentável Digital</Text>
+      </View>
       
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.content}>
@@ -45,7 +44,7 @@ const WelcomeScreen = ({ navigation }) => {
               plataformas, economizando tempo, recursos e contribuindo para um desenvolvimento mais sustentável.
             </Text>
             
-            {/* <View style={styles.featureCard}>
+            <View style={styles.featureCard}>
               <Text style={styles.featureTitle}>Por que React Native é Sustentável?</Text>
               
               <View style={styles.feature}>
@@ -80,7 +79,7 @@ const WelcomeScreen = ({ navigation }) => {
                   </Text>
                 </View>
               </View>
-            </View> */}
+            </View>
           </View>
           
           <View style={styles.aboutSection}>
@@ -122,6 +121,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.background.primary,
+  },
+  header: {
+    backgroundColor: theme.COLORS.background.primary,
+    paddingVertical: theme.SPACING.lg,
+    paddingHorizontal: theme.SPACING.lg,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#2D2D2D',
+  },
+  title: {
+    color: theme.COLORS.text.primary,
+    fontSize: theme.FONT.size.xl,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: theme.SPACING.xs,
+  },
+  subtitle: {
+    color: theme.COLORS.text.secondary,
+    fontSize: theme.FONT.size.sm,
+    textAlign: 'center',
   },
   scrollContainer: {
     flex: 1,
