@@ -1,17 +1,17 @@
 // src/screens/WelcomeScreen.js
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
-import Button from '../components/Button';
-import theme from '../styles/theme';
+import React from "react";
+import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import Button from "../components/Button";
+import theme from "../styles/theme";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>AprendeReact Native</Text>
-        <Text style={styles.subtitle}>Desenvolvimento Sustentável Digital</Text>
+        <Text style={styles.title}>Aprende React Native</Text>
+        <Text style={styles.subtitle}>Desenvolvimento Mobile</Text>
       </View>
-      
+
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.content}>
           <View style={styles.heroSection}>
@@ -21,91 +21,100 @@ const WelcomeScreen = ({ navigation }) => {
                 <Text style={styles.logoText}>RN</Text>
               </View>
             </View>
-            
+
             <Text style={styles.heroTitle}>
               Bem-vindo ao Aplicativo Educacional de React Native
             </Text>
-            
+
             <Text style={styles.heroSubtitle}>
-              Aprenda a desenvolver apps móveis nativos com JavaScript de forma sustentável
+              Aprenda a desenvolver apps móveis nativos com JavaScript
             </Text>
           </View>
-          
+
           <View style={styles.infoSection}>
             <Text style={styles.sectionTitle}>O que é React Native?</Text>
-            
+
             <Text style={styles.paragraph}>
-              React Native é um framework de código aberto criado pelo Facebook (Meta) que permite aos desenvolvedores 
-              criar aplicativos móveis nativos para Android e iOS utilizando JavaScript e React.
+              React Native é um framework de código aberto criado pelo Facebook
+              (Meta) que permite aos desenvolvedores criar aplicativos móveis
+              nativos para Android e iOS utilizando JavaScript e React.
             </Text>
-            
+
             <Text style={styles.paragraph}>
-              Com React Native, os desenvolvedores podem escrever um único código que funciona em diferentes 
-              plataformas, economizando tempo, recursos e contribuindo para um desenvolvimento mais sustentável.
+              Com React Native, os desenvolvedores podem escrever um único
+              código que funciona em diferentes plataformas, economizando tempo,
+              recursos.
             </Text>
-            
+
             <View style={styles.featureCard}>
-              <Text style={styles.featureTitle}>Por que React Native é Sustentável?</Text>
-              
+              <Text style={styles.featureTitle}>
+                Por que React Native?
+              </Text>
+
               <View style={styles.feature}>
                 <View style={styles.featureIconContainer}>
                   <Text style={styles.featureIcon}>♻️</Text>
                 </View>
                 <View style={styles.featureTextContainer}>
                   <Text style={styles.featureText}>
-                    <Text style={styles.bold}>Código Reutilizável:</Text> Desenvolva uma vez, execute em múltiplas plataformas
+                    <Text style={styles.bold}>Código Reutilizável:</Text>{" "}
+                    Desenvolva uma vez, execute em múltiplas plataformas
                   </Text>
                 </View>
               </View>
-              
+
               <View style={styles.feature}>
                 <View style={styles.featureIconContainer}>
                   <Text style={styles.featureIcon}>⚡</Text>
                 </View>
                 <View style={styles.featureTextContainer}>
                   <Text style={styles.featureText}>
-                    <Text style={styles.bold}>Eficiência Energética:</Text> Hot Reloading reduz consumo de recursos em desenvolvimento
+                    <Text style={styles.bold}>Eficiência Energética:</Text> Hot
+                    Reloading reduz consumo de recursos em desenvolvimento
                   </Text>
                 </View>
               </View>
-              
+
               <View style={styles.feature}>
                 <View style={styles.featureIconContainer}>
                   <Text style={styles.featureIcon}>🔄</Text>
                 </View>
                 <View style={styles.featureTextContainer}>
                   <Text style={styles.featureText}>
-                    <Text style={styles.bold}>Manutenção Simplificada:</Text> Menos código significa menos bugs e atualizações mais rápidas
+                    <Text style={styles.bold}>Manutenção Simplificada:</Text>{" "}
+                    Menos código significa menos bugs e atualizações mais
+                    rápidas
                   </Text>
                 </View>
               </View>
             </View>
           </View>
-          
+
           <View style={styles.aboutSection}>
             <Text style={styles.sectionTitle}>Sobre este App</Text>
-            
+
             <Text style={styles.paragraph}>
-              Este aplicativo educacional foi projetado para ajudar estudantes e desenvolvedores a aprender 
-              os fundamentos do React Native através de exemplos práticos e explicações claras.
+              Este aplicativo educacional foi projetado para ajudar estudantes e
+              desenvolvedores a aprender os fundamentos do React Native através
+              de exemplos práticos e explicações claras.
             </Text>
-            
+
             <Text style={styles.paragraph}>
-              Nosso objetivo é promover práticas de desenvolvimento sustentável, aplicando princípios de 
-              eficiência, acessibilidade e responsabilidade ambiental no desenvolvimento mobile.
+              Nosso objetivo é promover práticas de desenvolvimento,
+              aplicando princípios de eficiência, acessibilidade.
             </Text>
           </View>
-          
+
           <View style={styles.cta}>
-            <Button 
-              title="Explorar Lições" 
-              onPress={() => navigation.navigate('Lições')}
+            <Button
+              title="Explorar Lições"
+              onPress={() => navigation.navigate("Lições")}
               size="large"
             />
-            
-            <Button 
-              title="Ver Demonstrações" 
-              onPress={() => navigation.navigate('Demo')}
+
+            <Button
+              title="Ver Demonstrações"
+              onPress={() => navigation.navigate("Demo")}
               type="secondary"
               size="large"
               style={styles.secondaryButton}
@@ -126,21 +135,21 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.background.primary,
     paddingVertical: theme.SPACING.lg,
     paddingHorizontal: theme.SPACING.lg,
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: '#2D2D2D',
+    borderBottomColor: "#2D2D2D",
   },
   title: {
     color: theme.COLORS.text.primary,
     fontSize: theme.FONT.size.xl,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: theme.SPACING.xs,
   },
   subtitle: {
     color: theme.COLORS.text.secondary,
     fontSize: theme.FONT.size.sm,
-    textAlign: 'center',
+    textAlign: "center",
   },
   scrollContainer: {
     flex: 1,
@@ -150,7 +159,7 @@ const styles = StyleSheet.create({
   },
   // Seção Hero
   heroSection: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: theme.SPACING.xl,
   },
   logoContainer: {
@@ -161,25 +170,25 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 20,
     backgroundColor: theme.COLORS.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   logoText: {
     fontSize: 36,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    fontWeight: "bold",
+    color: "#FFFFFF",
   },
   heroTitle: {
     fontSize: theme.FONT.size.xxl,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: theme.SPACING.md,
   },
   heroSubtitle: {
     fontSize: theme.FONT.size.md,
     color: theme.COLORS.text.secondary,
-    textAlign: 'center',
+    textAlign: "center",
   },
   // Seção de Informações
   infoSection: {
@@ -187,7 +196,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: theme.FONT.size.xl,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
     marginBottom: theme.SPACING.md,
   },
@@ -207,12 +216,12 @@ const styles = StyleSheet.create({
   },
   featureTitle: {
     fontSize: theme.FONT.size.lg,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.accent,
     marginBottom: theme.SPACING.md,
   },
   feature: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: theme.SPACING.md,
   },
   featureIconContainer: {
@@ -231,7 +240,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
   },
   // Seção Sobre

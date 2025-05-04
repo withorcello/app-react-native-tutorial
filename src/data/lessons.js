@@ -1,11 +1,8 @@
-// src/data/lessons.js
-// Dados das lições do aplicativo
-
 export const lessons = [
     {
       id: '1',
       title: 'O que é React Native',
-      description: 'Uma introdução ao React Native e suas vantagens para desenvolvimento mobile sustentável.',
+      description: 'Uma introdução ao React Native e suas vantagens para desenvolvimento mobile.',
       icon: 'book-open-outline',
       duration: '5 min',
       content: `
@@ -21,9 +18,9 @@ export const lessons = [
   - **Grande comunidade** e ecossistema de bibliotecas
   - **Baseado em React**, aproveitando sua arquitetura declarativa e componentes
   
-  ## Impacto na Sustentabilidade Digital:
+  ## Impacto na Manutenibilidade Digital:
   
-  O React Native contribui para um desenvolvimento digital mais sustentável de várias formas:
+  O React Native contribui para um desenvolvimento digital de várias formas:
   
   1. **Redução de recursos**: Menos horas de desenvolvimento e equipes menores
   2. **Economia de energia**: Apps mais eficientes com melhor performance
@@ -39,7 +36,7 @@ export const lessons = [
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Olá, Mundo Sustentável!
+          Olá, Mundo!
         </Text>
         <Text style={styles.subtitle}>
           Meu primeiro app em React Native
@@ -430,7 +427,7 @@ export const lessons = [
           <Text style={styles.sectionTitle}>Cartões e Sombras</Text>
           
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>Cartão Sustentável</Text>
+            <Text style={styles.cardTitle}>Cartão</Text>
             <Text style={styles.cardContent}>
               Este cartão demonstra o uso de sombras, bordas arredondadas e 
               espaçamento interno (padding) para criar componentes elegantes.
@@ -454,7 +451,7 @@ export const lessons = [
           <Text style={styles.heading2}>Subtítulo</Text>
           <Text style={styles.body}>
             Este é um texto de corpo com tamanho e espaçamento adequados para 
-            leitura. A legibilidade é essencial em interfaces sustentáveis.
+            leitura. A legibilidade é essencial em interfaces.
           </Text>
           <Text style={styles.caption}>Legenda ou texto auxiliar</Text>
           
@@ -604,7 +601,7 @@ export const lessons = [
   - **Route Param**: Permite passar dados entre telas
   - **Navigation Container**: Componente raiz que gerencia o estado da navegação
   
-  ## Navegação Sustentável:
+  ## Navegação:
   
   Uma navegação bem planejada torna o aplicativo mais eficiente e reduz o consumo de recursos.
   Isso é alcançado através de:

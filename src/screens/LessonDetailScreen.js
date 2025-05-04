@@ -1,23 +1,28 @@
 // src/screens/LessonDetailScreen.js
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Button from '../components/Button';
-import CodeBlock from '../components/CodeBlock';
-import { lessons } from '../data/lessons';
-import theme from '../styles/theme';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import Button from "../components/Button";
+import CodeBlock from "../components/CodeBlock";
+import { lessons } from "../data/lessons";
+import theme from "../styles/theme";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const LessonDetailScreen = ({ route, navigation }) => {
   const { lessonId } = route.params;
   const [lesson, setLesson] = useState(null);
-  const [activeTab, setActiveTab] = useState('content'); // 'content' ou 'code'
-  
+  const [activeTab, setActiveTab] = useState("content");
+
   useEffect(() => {
-    // Buscar a lição com base no ID
-    const lessonData = lessons.find(item => item.id === lessonId);
+    const lessonData = lessons.find((item) => item.id === lessonId);
     setLesson(lessonData);
   }, [lessonId]);
-  
+
   if (!lesson) {
     return (
       <View style={styles.loadingContainer}>
@@ -25,67 +30,64 @@ const LessonDetailScreen = ({ route, navigation }) => {
       </View>
     );
   }
-  
-  // Função para formatar o conteúdo texto (uma implementação básica de Markdown)
+
   const formatContent = (content) => {
     if (!content) return [];
-    
-    // Dividir o conteúdo em linhas
-    const lines = content.trim().split('\n');
+
+    const lines = content.trim().split("\n");
     const formattedContent = [];
-    
+
     let inList = false;
     let listItems = [];
-    
+
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
-      // Pular linhas vazias
-      if (line === '') {
-        // Se estávamos em uma lista, finalizar a lista
+
+      if (line === "") {
         if (inList) {
-          formattedContent.push({ type: 'list', items: [...listItems] });
+          formattedContent.push({ type: "list", items: [...listItems] });
           listItems = [];
           inList = false;
         }
         continue;
       }
-      
-      // Títulos H1
-      if (line.startsWith('# ')) {
-        // Se estávamos em uma lista, finalizar a lista
+
+      if (line.startsWith("# ")) {
         if (inList) {
-          formattedContent.push({ type: 'list', items: [...listItems] });
+          formattedContent.push({ type: "list", items: [...listItems] });
           listItems = [];
           inList = false;
         }
         formattedContent.push({
-          type: 'heading1',
-          content: line.substring(2)
+          type: "heading1",
+          content: line.substring(2),
         });
       }
-      // Títulos H2
-      else if (line.startsWith('## ')) {
-        // Se estávamos em uma lista, finalizar a lista
+      else if (line.startsWith("## ")) {
         if (inList) {
-          formattedContent.push({ type: 'list', items: [...listItems] });
+          formattedContent.push({ type: "list", items: [...listItems] });
           listItems = [];
           inList = false;
         }
         formattedContent.push({
-          type: 'heading2',
-          content: line.substring(3)
+          type: "heading2",
+          content: line.substring(3),
         });
       }
       // Itens de lista
-      else if (line.startsWith('- ') || line.startsWith('* ')) {
+      else if (line.startsWith("- ") || line.startsWith("* ")) {
         inList = true;
         listItems.push(line.substring(2));
-        
+
         // Se for o último item ou próxima linha não é lista
-        if (i === lines.length - 1 || 
-            !(lines[i+1].trim().startsWith('- ') || lines[i+1].trim().startsWith('* '))) {
-          formattedContent.push({ type: 'list', items: [...listItems] });
+        if (
+          i === lines.length - 1 ||
+          !(
+            lines[i + 1].trim().startsWith("- ") ||
+            lines[i + 1].trim().startsWith("* ")
+          )
+        ) {
+          formattedContent.push({ type: "list", items: [...listItems] });
           listItems = [];
           inList = false;
         }
@@ -94,39 +96,39 @@ const LessonDetailScreen = ({ route, navigation }) => {
       else {
         // Se estávamos em uma lista, finalizar a lista
         if (inList) {
-          formattedContent.push({ type: 'list', items: [...listItems] });
+          formattedContent.push({ type: "list", items: [...listItems] });
           listItems = [];
           inList = false;
         }
         formattedContent.push({
-          type: 'paragraph',
-          content: line
+          type: "paragraph",
+          content: line,
         });
       }
     }
-    
+
     return formattedContent;
   };
-  
+
   const formattedContent = formatContent(lesson.content);
-  
+
   // Renderizar cada elemento do conteúdo formatado
   const renderContent = () => {
     return formattedContent.map((item, index) => {
       switch (item.type) {
-        case 'heading1':
+        case "heading1":
           return (
             <Text key={`h1-${index}`} style={styles.heading1}>
               {item.content}
             </Text>
           );
-        case 'heading2':
+        case "heading2":
           return (
             <Text key={`h2-${index}`} style={styles.heading2}>
               {item.content}
             </Text>
           );
-        case 'list':
+        case "list":
           return (
             <View key={`list-${index}`} style={styles.list}>
               {item.items.map((listItem, listIndex) => (
@@ -137,7 +139,7 @@ const LessonDetailScreen = ({ route, navigation }) => {
               ))}
             </View>
           );
-        case 'paragraph':
+        case "paragraph":
           return (
             <Text key={`p-${index}`} style={styles.paragraph}>
               {item.content}
@@ -148,12 +150,12 @@ const LessonDetailScreen = ({ route, navigation }) => {
       }
     });
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerTitleRow}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
@@ -163,27 +165,30 @@ const LessonDetailScreen = ({ route, navigation }) => {
           <View style={styles.spacer} />
         </View>
       </View>
-      
+
       <View style={styles.tabsContainer}>
         <Button
           title="Conteúdo"
-          type={activeTab === 'content' ? 'primary' : 'secondary'}
+          type={activeTab === "content" ? "primary" : "secondary"}
           size="small"
-          onPress={() => setActiveTab('content')}
+          onPress={() => setActiveTab("content")}
           style={styles.tabButton}
         />
         <Button
           title="Código Exemplo"
-          type={activeTab === 'code' ? 'primary' : 'secondary'}
+          type={activeTab === "code" ? "primary" : "secondary"}
           size="small"
-          onPress={() => setActiveTab('code')}
+          onPress={() => setActiveTab("code")}
           style={styles.tabButton}
         />
       </View>
-      
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.content}>
-          {activeTab === 'content' ? (
+          {activeTab === "content" ? (
             // Conteúdo teórico
             renderContent()
           ) : (
@@ -192,20 +197,13 @@ const LessonDetailScreen = ({ route, navigation }) => {
               <Text style={styles.codeTitle}>Exemplo prático:</Text>
               <CodeBlock code={lesson.codeExample} language="javascript" />
               <Text style={styles.codeDescription}>
-                Este exemplo demonstra os conceitos abordados nesta lição. 
+                Este exemplo demonstra os conceitos abordados nesta lição.
                 Experimente modificar o código e observar os resultados!
               </Text>
             </>
           )}
         </View>
       </ScrollView>
-      
-      <View style={styles.footer}>
-        <Button 
-          title="Ver na Prática" 
-          onPress={() => navigation.navigate('Demo')}
-        />
-      </View>
     </View>
   );
 };
@@ -220,12 +218,12 @@ const styles = StyleSheet.create({
     paddingVertical: theme.SPACING.md,
     paddingHorizontal: theme.SPACING.md,
     borderBottomWidth: 1,
-    borderBottomColor: '#2D2D2D',
+    borderBottomColor: "#2D2D2D",
   },
   headerTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   backButton: {
     padding: theme.SPACING.xs,
@@ -233,8 +231,8 @@ const styles = StyleSheet.create({
   title: {
     color: theme.COLORS.text.primary,
     fontSize: theme.FONT.size.lg,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     flex: 1,
   },
   spacer: {
@@ -242,8 +240,8 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: theme.COLORS.background.primary,
   },
   loadingText: {
@@ -251,7 +249,7 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT.size.lg,
   },
   tabsContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingHorizontal: theme.SPACING.lg,
     paddingVertical: theme.SPACING.md,
     backgroundColor: theme.COLORS.background.secondary,
@@ -269,14 +267,14 @@ const styles = StyleSheet.create({
   },
   heading1: {
     fontSize: theme.FONT.size.xxl,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
     marginBottom: theme.SPACING.md,
     marginTop: theme.SPACING.lg,
   },
   heading2: {
     fontSize: theme.FONT.size.xl,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
     marginBottom: theme.SPACING.sm,
     marginTop: theme.SPACING.md,
@@ -291,14 +289,14 @@ const styles = StyleSheet.create({
     marginBottom: theme.SPACING.md,
   },
   listItem: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: theme.SPACING.xs,
   },
   listBullet: {
     fontSize: theme.FONT.size.md,
     color: theme.COLORS.primary,
     marginRight: theme.SPACING.sm,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   listItemText: {
     flex: 1,
@@ -308,7 +306,7 @@ const styles = StyleSheet.create({
   },
   codeTitle: {
     fontSize: theme.FONT.size.lg,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.COLORS.text.primary,
     marginBottom: theme.SPACING.md,
   },

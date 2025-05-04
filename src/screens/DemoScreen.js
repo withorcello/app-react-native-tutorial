@@ -19,7 +19,6 @@ const DemoScreen = () => {
   // Estados para os diferentes exemplos
   const [switchValue, setSwitchValue] = useState(false);
   const [inputText, setInputText] = useState("");
-  const [sliderValue, setSliderValue] = useState(50);
   const [counter, setCounter] = useState(0);
   const [selectedColor, setSelectedColor] = useState("#4CAF50");
   const [showModal, setShowModal] = useState(false);
@@ -232,18 +231,6 @@ const DemoScreen = () => {
               </View>
             </View>
           </View>
-
-          <TouchableOpacity
-            style={styles.moreExamplesButton}
-            onPress={toggleModal}
-          >
-            <Text style={styles.moreExamplesButtonText}>Ver Mais Exemplos</Text>
-            <Ionicons
-              name="chevron-down"
-              size={20}
-              color={theme.COLORS.text.link}
-            />
-          </TouchableOpacity>
 
           {showModal && (
             <View style={styles.modalOverlay}>

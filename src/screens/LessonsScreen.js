@@ -37,7 +37,7 @@ const LessonsScreen = ({ navigation }) => {
       <View style={styles.content}>
         <Text style={styles.introText}>
           Selecione uma lição para começar a aprender sobre React Native
-          e o desenvolvimento de aplicativos móveis sustentáveis.
+          e o desenvolvimento de aplicativos móveis.
         </Text>
         
         <FlatList

@@ -3,7 +3,7 @@
 
 const COLORS = {
     // Cores principais
-    primary: '#4CAF50',     // Verde sustentável para destaque
+    primary: '#4CAF50',     // Verde para destaque
     secondary: '#2196F3',   // Azul para elementos secundários
     accent: '#FFC107',      // Amarelo para ações ou alertas
     
